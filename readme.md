@@ -1,13 +1,13 @@
 # online_chessql Documentation
 
-This is a program designed to create and analyze a PostgreSQL database of online chess game data made available by Ulrik Thyge Pedersen on Kaggle. You can find his dataset on Kaggle here: https://www.kaggle.com/datasets/ulrikthygepedersen/online-chess-games. This dataset provides rating, openings, and game outcome data for over 20,000 online chess games via CSV.
+This is a program designed to create and analyze a PostgreSQL database of online chess game data made available by Ulrik Thyge Pedersen on Kaggle. You can find his dataset on Kaggle [here](https://www.kaggle.com/datasets/ulrikthygepedersen/online-chess-games). This dataset provides rating, openings, and game outcome data for over 20,000 online chess games via CSV.
 
 The program consists of the following files:
 
 - main.py: Controls the database functions and handles user error inputs.
 - db.py: Contains functions to interact with the PostgreSQL database, including creating tables, dropping tables, loading data from a CSV file, adding columns, inserting data, and more.
 - auth.json: A simple JSON file that contains user-input psycopg connection string parameters.
-- chess_games.csv: A CSV file containing 20,000 lines of unique online chess game data.
+- chess_games.csv: A CSV file containing the dataset.
 
 ## File Structure
 
@@ -33,16 +33,14 @@ Make sure to install these dependencies before running the program.
 
 To use the program, follow these steps:
 
-1. Ensure that the PostgreSQL server is running.
-2. Create a PostgreSQL database and provide the necessary authentication details in the `auth.json` file.
-3. Run the `main.py` script using Python.
-4. The program will connect to the PostgreSQL database using the provided authentication details.
-5. The database tables will be created if they don't already exist.
-6. The chess game data from the `chess_games.csv` file will be loaded into the `games` table.
-7. Additional columns will be added to the `games` table.
-8. The statistics (`stats`) table will be populated with relevant data based on the game ratings.
-9. The openings (`openings`) table will be populated with data related to specific chess openings.
-10. Once the program completes, the database will be ready for analysis and querying.
+1. Create and connect to a PostgreSQL database locally.
+2. Enter your default user authentication details in the `auth.json` file.
+3. Run the `main.py` script on an up-to-date version of Python.
+4. The database tables will be created if they don't already exist.
+5. The chess game data from the `chess_games.csv` file will be loaded into the `games` table.
+6. Additional columns (for average rating, rating difference, and 'upset' Y/N) will be added to the `games` table.
+7. The stats (`stats`) and openings (`openings`) tables will populate with summarizing data for each 100-rating range, beginning with 800-899.99.
+8. Once the program completes, the database will be ready for analysis and querying.
 
 Please ensure that you have the necessary permissions to create tables, insert data, and execute SQL queries on the PostgreSQL database.
 
