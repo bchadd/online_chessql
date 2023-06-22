@@ -31,9 +31,9 @@ The following dependencies are required to run the program:
 
 Basic usage and notes on the program can be found below:
 
-1. *Create and connect to a PostgreSQL database locally.*
-2. *Enter your default user authentication details in the `auth.json` file.* Ensure that the user has the necessary permissions to execute create table, insert into table, and create view commands within the given PostgreSQL database.
-3. *Run the `main.py` script on an up-to-date version of Python.*
+1. **Create and connect to a PostgreSQL database locally.**
+2. **Enter your default user authentication details in the `auth.json` file.** Ensure that the user has the necessary permissions to execute create table, insert into table, and create view commands within the given PostgreSQL database.
+3. **Run the `main.py` script on an up-to-date version of Python.**
 4. The database tables will be created if they don't already exist.
 5. The raw chess game data from the `chess_games.csv` file will be loaded into the `games` table.
 6. Additional columns (for average rating, rating difference, and 'upset' bool) will be added to the `games` table.
@@ -55,5 +55,5 @@ Basic usage and notes on the program can be found below:
 - `df_to_db(rated_df: pd.DataFrame, engine: Engine) -> None`: Transfers the DataFrame data to the `games` table in the database using SQLAlchemy.
 - `insert_stats(conn_str: str) -> None`: Populates the `stats` table with statistics based on game ratings.
 - `insert_opens(conn_str: str) -> None`: Populates the `openings` table with data related to specific chess openings.
-- `create_summary_view(conn_str: str) -> None`: Creates a view in the database named 'summary'. Note that *the view will always be overwritten if the function is only being used within the main() function*.
-- `export_view_csv(conn_str: str) -> None`: Writes the 'summary' view to a CSV named 'rated_summary.csv' in the project directory. *This CSV will be overwritten without warning*, so the data in the created 'rated_summary.csv' will always refer only back to the state of the database after the most recent time the main() function ran.
+- `create_summary_view(conn_str: str) -> None`: Creates a view in the database named 'summary'. Note that **the view will always be overwritten if the function is only being used within the main() function**.
+- `export_view_csv(conn_str: str) -> None`: Writes the 'summary' view to a CSV named 'rated_summary.csv' in the project directory. **This CSV will be overwritten without warning**, so the data in the created 'rated_summary.csv' will always refer only back to the state of the database after the most recent time the main() function ran.
