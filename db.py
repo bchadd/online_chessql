@@ -372,3 +372,29 @@ def insert_opens(conn_str: str) -> None:
                         black_wr_fd)
                     VALUES (%s, %s, %s, %s, %s, %s, %s, %s);'''
                 cur.execute(sql,row)
+
+def create_summary_view(conn_str: str) -> None:
+    with psycopg.connect(conn_str) as conn:
+        with conn.cursor() as cur:
+            sql = '''
+                CREATE OR REPLACE VIEW summary AS
+                    SELECT stats.label,
+                        stats.games,
+                        stats.white_wr,
+                        stats.black_wr,
+                        openings.white_wr_sd,
+                        openings.black_wr_sd,
+                        openings.white_wr_ck,
+                        openings.black_wr_ck,
+                        openings.white_wr_fd,
+                        openings.black_wr_fd
+                    FROM stats
+                    JOIN openings ON stats.label = openings.label;'''
+            cur.execute(sql)
+
+def export_view_csv(conn_str: str) -> None:
+    with psycopg.connect(conn_str) as conn:
+        with conn.cursor() as cur:
+            sql = 'SELECT * FROM summary;'
+            data = cur.execute(sql).fetchall()
+            pd.DataFrame(data).to_csv('rated_summary.csv')

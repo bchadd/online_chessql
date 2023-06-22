@@ -30,5 +30,8 @@ def main() -> None:
     except UniqueViolation:
         print('''Row(s) not inserted; one or more of the provided\nprimary keys already exists in the stats and/or the\nopenings table. Drop tables and run main.py again.''')
 
+    db.create_summary_view(conn_str)
+    db.export_view_csv(conn_str)
+
 if __name__ == '__main__':
     main()
